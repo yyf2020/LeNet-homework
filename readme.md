@@ -1,1 +1,1 @@
-This is a student homework and thank the owners of https://download.csdn.net/download/u012737234/8493615 and https://blog.csdn.net/weixin_39566131/article/details/100578284 very much!
+This is a student homework and thank the owners of https://download.csdn.net/download/u012737234/8493615 and https://blog.csdn.net/weixin_39566131/article/details/100578284 very much! And if there is any legal issue, one can inform me immediately!
