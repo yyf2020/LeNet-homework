@@ -1,0 +1,14 @@
+MINST的EPOCHS 统一为10，Batch_size 为128，学习率为0.01。
+LeNet+MNIST, inspired by https://colab.research.google.com/drive/1CVm50PGE4vhtB5I_a_yc4h5F-itKOVL9#scrollTo=x61q492UX9uq
+结果为：5s 12ms/step - loss: 0.0296 - accuracy: 0.9906 - val_loss: 0.0464 - val_accuracy: 0.9866
+ResNet18+MNIST, inspired by https://github.com/marrrcin/pytorch-resnet-mnist
+结果为Epoch: 10 |loss0.0754 |accuracy0.9827
+
+CIFAR10的EPOCHS 统一为10，Batch_size 为128，学习率为0.01。
+LeNet+CIFAR10, inspired by https://bywmm.github.io/2018/12/14/keras%20samples-%20LeNet-5%20on%20cifar10%20dataset/
+结果为Epoch 10/10  766/766 - 49s - loss: 0.7206 - accuracy: 0.7452 - val_loss: 0.7062 - val_accuracy: 0.7680
+ResNet20v1+CIFAR10, inspired by https://keras.io/zh/examples/cifar10_resnet/
+结果为 254s 650ms/step - loss: 0.9649 - accuracy: 0.7553 - val_loss: 1.6130 - val_accuracy: 0.5926
+
+分析：一、LeNet+最初为手写集识别设计，对CIFAR10数据集的识别率不高比较正常，但ResNet+训练集虽然准确略高，但测试集准确很低，说明发生了过拟合，如果把学习率调成0.001，EPOCHS拉大可能效果更好，或者换一个更大的数据集。
+二、ResNet+在本人电脑上其慢无比，而且跑MNIST+的accuracy较LeNet+还差（可能mnist数据集分辨率低，特征少，浅层网络更适合。容量太大的网络比如ResNet+难以训练且易产生过拟合）。电脑速度慢以为是卷积层太复杂看了下也不多，然后觉得batch_size的事，发现batch_size也为128，猜想原因可能有三种：1、ResNet+其为残差神经网络，参数层较LeNet+复杂吗，计算量可能更大；2、用的ResNet+的早期版本，可能代码质量没有后期版本好的好；3、ResNet+调用了CUDA，不巧本人电脑CPU是AMD R7-4800H，显卡是集显VEGA 7 512M共享显存，毫无任何优化，纯耗CPU算力。
